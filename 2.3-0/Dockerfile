@@ -2,6 +2,9 @@ FROM ruby:2.3
 MAINTAINER James Christianson <jamchri@microsoft.com>
 RUN apt-get update -qq && apt-get install -y nodejs unzip --no-install-recommends
 
+# Install mysql client
+RUN apt-get install libmysqlclient-dev
+
 # Rollback bundler version for deployment reasons (14 had a breaking change for us)
 RUN  gem uninstall -i /usr/local/lib/ruby/gems/2.3.0 bundler
 RUN gem install bundler --version "=1.13.6"
